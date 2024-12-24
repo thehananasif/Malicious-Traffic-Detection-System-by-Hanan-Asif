@@ -139,3 +139,16 @@ Also, to test the capturing of DNS traffic you can try the following:
 nslookup morphed.ru
 cat /var/log/maltrail/$(date +"%Y-%m-%d").log
 ```
+![68747470733a2f2f692e696d6775722e636f6d2f36326f616645652e706e67](https://github.com/user-attachments/assets/d26d4d3d-d1d1-418d-acfc-276b06b5d7a8)
+
+To stop Sensor and Server instances (if running in background) execute the following:
+```
+sudo pkill -f sensor.py
+pkill -f server.py
+```
+
+Access the reporting interface (i.e. **Client**) by visiting the `http://127.0.0.1:8338` (default credentials: admin:changeme!) from your web browser:
+
+![68747470733a2f2f692e696d6775722e636f6d2f564173713863732e706e67](https://github.com/user-attachments/assets/d085c784-3c9b-42c7-9420-0f1b60f25cbc)
+
+## Administrator's guide
