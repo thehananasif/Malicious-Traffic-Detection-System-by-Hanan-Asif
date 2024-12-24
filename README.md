@@ -176,3 +176,17 @@ Example of event data being sent over UDP is as follows:
 `{"timestamp": 1608818692, "sensor": "beast", "severity": "high", "src_ip": "192.168.5.137", "src_port": 48949, "dst_ip": "8.8.8.8", "dst_port": 53, "proto": "UDP", "type": "DNS", "trail": "morphed.ru", "info": "andromeda (malware)", "reference": "(static)"}`
 
 When running the sensor (e.g. `sudo python sensor.py`) for the first time and/or after a longer period of non-running, it will automatically update the trails from trail definitions (Note: stored inside the `trails` directory). After the initialization, it will start monitoring the configured interface (option `MONITOR_INTERFACE` inside the `HananAsif.conf`) and write the events to either the configured log directory (option `LOG_DIR` inside the `HananAsif.conf` file's section `[All]`) or send them remotely to the logging/reporting **Server** (option `LOG_SERVER`).
+
+![68747470733a2f2f692e696d6775722e636f6d2f413071524f70382e706e67](https://github.com/user-attachments/assets/4a01cdf6-8332-4595-b8bc-ae40b8397f68)
+
+Detected events are stored inside the **Server's** logging directory (i.e. option `LOG_DIR` inside the HananAsif.conf file's section `[All]`) in easy-to-read CSV format (Note: whitespace ' ' is used as a delimiter) as single line entries consisting of: `time` `sensor` `src_ip` `src_port` `dst_ip` `dst_port` `proto` `trail_type` `trail` `trail_info` `reference` (e.g. `"2015-10-19 15:48:41.152513" beast 192.168.5.33 32985 8.8.8.8 53 UDP DNS 0000mps.webpreview.dsl.net malicious siteinspector.comodo.com)`:
+
+![68747470733a2f2f692e696d6775722e636f6d2f527963675672752e706e67](https://github.com/user-attachments/assets/74a239f1-5b7c-45f0-a6d2-c58d587b0798)
+
+## Server
+
+Server's configuration can be found inside the `HananAsif.conf` section `[Server]`:
+
+![68747470733a2f2f692e696d6775722e636f6d2f546955704c58382e706e67](https://github.com/user-attachments/assets/be6966d4-e6ac-4b65-b7f1-56b4cb9f2712)
+
+
