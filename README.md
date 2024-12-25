@@ -275,3 +275,10 @@ Clicking on one such icon will open a new dialog containing all stored items (No
 
 ![68747470733a2f2f692e696d6775722e636f6d2f3970674d7069522e706e67](https://github.com/user-attachments/assets/7edacc02-e992-455d-97b8-1697ab2053d1)
 
+When hovering mouse pointer over the threat's trail for couple of seconds it will result in a frame consisted of results using the trail as a search term performed against Search Encrypt searX search engine. In lots of cases, this provides basic information about the threat itself, eliminating the need for user to do the manual search for it. In upper right corner of the opened frame window there are two extra buttons. By clicking the first one (i.e. ↗️), the resulting frame will be opened inside the new browser's tab (or window), while by clicking the second one (i.e. ❌) will immediately close the frame (Note: the same action is achieved by moving the mouse pointer outside the frame borders):
+
+![68747470733a2f2f692e696d6775722e636f6d2f5a786e486e314e2e706e67](https://github.com/user-attachments/assets/ccbb6d3c-71bd-4097-9749-1b408ff4489a)
+
+For each threat there is a column `tag` that can be filled with arbitrary "tags" to closely describe all threats sharing the same trail. Also, it is a great way to describe threats individually, so all threats sharing the same tag (e.g. `yahoo`) could be grouped out later:
+
+![image](https://github.com/user-attachments/assets/535d3fc8-e2f9-4717-a9f0-5574f44d794d)
