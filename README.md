@@ -189,4 +189,6 @@ Server's configuration can be found inside the `HananAsif.conf` section `[Server
 
 ![68747470733a2f2f692e696d6775722e636f6d2f546955704c58382e706e67](https://github.com/user-attachments/assets/be6966d4-e6ac-4b65-b7f1-56b4cb9f2712)
 
+Option `HTTP_ADDRESS` contains the web server's listening address (Note: use `0.0.0.0` to listen on all interfaces). Option `HTTP_PORT` contains the web server's listening port. Default listening port is set to `8338`. If option `USE_SSL` is set to `true` then `SSL/TLS` will be used for accessing the web server (e.g. `https://192.168.6.10:8338/`). In that case, option `SSL_PEM` should be pointing to the server's private/cert PEM file.
 
+Subsection `USERS`contains user's configuration settings. Each user entry consists of the `username:sha256(password):UID:filter_netmask(s)`. Value `UID` represents the unique user identifier, where it is recommended to use values lower than 1000 for administrative accounts, while higher value for non-administrative accounts. The part `filter_netmask(s)` represents the comma-delimited hard filter(s) that can be used to filter the shown events depending on the user account(s). Default entry is as follows:
