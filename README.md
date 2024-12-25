@@ -264,3 +264,14 @@ Bottom part holds a condensed representation of logged events in form of a pagin
 Column `threat` holds threat's unique ID (e.g. `85fdb08d`) and color (Note: extruded from the threat's ID), `sensor` holds sensor name(s) where the event has been triggered (e.g. `blitvenica`), `events` holds total number of events for a current threat, `severity` holds evaluated severity of threat (Note: calculated based on values in `info` and `reference` columns, prioritizing malware generated traffic), `first_seen` holds time of first event in a selected (24h) period (e.g. `06th 08:21:54`, `last_seen` holds time of last event in a selected (24h) period (e.g. `06th 15:21:23`), `sparkline` holds a small sparkline graph representing threat's activity in selected period, src_ip holds source IP(s) of a threat (e.g. 99.102.41.102), `src_port` holds source port(s) (e.g. `44556, 44589, 44601`), `dst_ip` holds destination IP(s) (e.g. `213.202.100.28`), `dst_port` holds destination port(s) (e.g. `80 (HTTP)`), `proto` holds protocol(s), (e.g. `TCP`), `trail` holds a blacklisted (or heuristic) entry that triggered the event(s), `info` holds more information about the threat/trail (e.g. `known attacker` for known attacker's IP addresses or `ipinfo` for known IP information service commonly used by malware during a startup), `reference` holds a source of the blacklisted entry (e.g. `(static)` for static trails or `myip.ms` for a dynamic feed retrieved from that same source) and `tags` holds user defined tags for a given trail (e.g. `APT28`).
 
 When moving mouse over `src_ip` and `dst_ip` table entries, information tooltip is being displayed with detailed reverse DNS and WHOIS information (Note: RIPE is the information provider):
+
+![68747470733a2f2f692e696d6775722e636f6d2f42674b636841582e706e67](https://github.com/user-attachments/assets/4a1f252d-49e8-4da1-8c70-80a9db310a11)
+
+Event details (e.g. `src_port`, `dst_port`, `proto`, etc.) that differ inside same threat entry are condensed in form of a bubble icon (i.e. 📩). This is performed to get an usable reporting interface with as less rows as possible. Moving mouse over such icon will result in a display of an information tooltip with all items held (e.g. all port numbers being scanned by `attacker`):
+
+![68747470733a2f2f692e696d6775722e636f6d2f426659543275372e706e67](https://github.com/user-attachments/assets/6e62c1be-c2e3-4399-9587-bca3db0160ac)
+
+Clicking on one such icon will open a new dialog containing all stored items (Note: in their uncondensed form) ready to be Copy-Paste(d) for further analysis:
+
+![68747470733a2f2f692e696d6775722e636f6d2f3970674d7069522e706e67](https://github.com/user-attachments/assets/7edacc02-e992-455d-97b8-1697ab2053d1)
+
