@@ -192,3 +192,42 @@ Server's configuration can be found inside the `HananAsif.conf` section `[Server
 Option `HTTP_ADDRESS` contains the web server's listening address (Note: use `0.0.0.0` to listen on all interfaces). Option `HTTP_PORT` contains the web server's listening port. Default listening port is set to `8338`. If option `USE_SSL` is set to `true` then `SSL/TLS` will be used for accessing the web server (e.g. `https://192.168.6.10:8338/`). In that case, option `SSL_PEM` should be pointing to the server's private/cert PEM file.
 
 Subsection `USERS`contains user's configuration settings. Each user entry consists of the `username:sha256(password):UID:filter_netmask(s)`. Value `UID` represents the unique user identifier, where it is recommended to use values lower than 1000 for administrative accounts, while higher value for non-administrative accounts. The part `filter_netmask(s)` represents the comma-delimited hard filter(s) that can be used to filter the shown events depending on the user account(s). Default entry is as follows:
+
+![68747470733a2f2f692e696d6775722e636f6d2f505977735a6b6e2e706e67](https://github.com/user-attachments/assets/d880ba5b-fbb0-4091-8b22-d03644cd195a)
+
+Option `UDP_ADDRESS` contains the server's log collecting listening address (Note: use `0.0.0.0` to listen on all interfaces), while option `UDP_PORT` contains listening port value. If turned on, when used in combination with option `LOG_SERVER`, it can be used for distinct (multiple) **Sensor** <-> **Server** architecture.
+
+Option `FAIL2BAN_REGEX` contains the regular expression (e.g. `attacker|reputation|potential[^"]*(web scan|directory traversal|injection|remote code|iot-malware download|spammer|mass scanner`) to be used in `/fail2ban` web calls for extraction of today's attacker source IPs. This allows the usage of IP blocking mechanisms (e.g. `fail2ban`, `iptables` or `ipset`) by periodic pulling of blacklisted IP addresses from remote location. Example usage would be the following script (e.g. run as a `root` cronjob on a minute basis):
+```
+#!/bin/bash
+ipset -q flush maltrail
+ipset -q create maltrail hash:net
+for ip in $(curl http://127.0.0.1:8338/fail2ban 2>/dev/null | grep -P '^[0-9.]+$'); do ipset add maltrail $ip; done
+iptables -I INPUT -m set --match-set maltrail src -j DROP
+```
+
+Option `BLACKLIST` allows to build regular expressions to apply on one field. For each rule, the syntax is : `<field> <control> <regexp>` where :
+
+**•** `field` indicates the field to compage, it can be: `src_ip`,`src_port`,`dst_ip`,`dst_port`,`protocol`,`type`,`trail` or `filter`.
+
+**•** `control` can be either `~` for matches or `!~` for *doesn't match*
+
+**•** `regexp` is the regular expression to apply to the field. Chain another rule with the `and` keyword (the `or` keyword is not supported, just add a line for this).
+
+You can use the keyword `BLACKLIST` alone or add a name : `BLACKLIST_NAME`. In the latter case, the url will be : `/blacklist/name`
+
+For example, the following will build an out blacklist for all traffic from another source than `192.168.0.0/16` to destination port `SSH` or matching the filters `scan` or `known attacker`.
+```
+BLACKLIST_OUT
+    src_ip !~ ^192.168. and dst_port ~ ^22$
+    src_ip !~ ^192.168. and filter ~ scan
+    src_ip !~ ^192.168. and filter ~ known attacker
+
+BLACKLIST_IN
+    src_ip ~ ^192.168. and filter ~ malware
+```
+
+The way to build ipset blacklist is the same (see above) excepted that URLs will be `/blacklist/in` and `/blacklist/out` in our example.
+
+Same as for **Sensor**, when running the **Server** (e.g. `python server.py`) for the first time and/or after a longer period of non-running, if option `USE_SERVER_UPDATE_TRAILS` is set to `true`, it will automatically update the trails from trail definitions (Note: stored inside the `trails` directory). Its basic function is to store the log entries inside the logging directory (i.e. option `LOG_DIR` inside the `HananAsif.conf` file's section `[All]`) and provide the web reporting interface for presenting those same entries to the end-user (Note: there is no need install the 3rd party web server packages like Apache):
+
