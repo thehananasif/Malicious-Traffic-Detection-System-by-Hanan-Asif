@@ -282,3 +282,234 @@ When hovering mouse pointer over the threat's trail for couple of seconds it wil
 For each threat there is a column `tag` that can be filled with arbitrary "tags" to closely describe all threats sharing the same trail. Also, it is a great way to describe threats individually, so all threats sharing the same tag (e.g. `yahoo`) could be grouped out later:
 
 ![image](https://github.com/user-attachments/assets/535d3fc8-e2f9-4717-a9f0-5574f44d794d)
+
+## Real-life cases
+
+In the following section some of the "usual suspects" scenarios will be described through the real-life cases.
+
+### Mass scans
+
+Mass scans is a fairly common phenomenon where individuals and/or organizations give themselves a right to scan the whole 0.0.0.0/0 IP range (i.e. whole Internet) on a daily basis, with disclaimer where they say that if you don't like it then you should contact them privately to be skipped from future scans.
+
+![image](https://github.com/user-attachments/assets/839b6611-b5d5-4a8a-a961-96d8efec5e73)
+
+To make stuff worse, organizations as Shodan and ZoomEye give all results freely available (to other potential attackers) through their search engine. In the following screenshots you'll see details of Shodan scans in one single day.
+
+Here is a reverse DNS and WHOIS lookup of the "attacker"'s address:
+
+![image](https://github.com/user-attachments/assets/aff7ca35-3a3d-4154-92cb-6d16913bd10c)
+
+When hovering mouse pointer over the `trail` column's content (IP address), you'll be presented with the search results from searX where you'll be able to find more information about the "attacker":
+
+![image](https://github.com/user-attachments/assets/be003bdd-4727-4e14-9e71-b4762a7a1166)
+
+In the `dst_ip` column, if you have a large organization, you'll be presented with large list of scanned IP addresses:
+
+![image](https://github.com/user-attachments/assets/57c8cb11-3cc8-4cd8-8cab-ce9d77118fa5)
+
+In the `dst_port` column you'll be able to see all ports that have been scanned by such mass scans:
+
+![image](https://github.com/user-attachments/assets/4f49bf88-7180-4bb2-ae25-dfa6f9beae25)
+
+In other similar situations you'll see the same behaviour, coming from blacklisted individual attacker(s) (in this case by cinsscore.com):
+
+![image](https://github.com/user-attachments/assets/1c44f462-adbf-46fd-a20b-549f04971360)
+
+One more common behaviour is scanning of the whole 0.0.0.0/0 IP range (i.e. Internet) in search for one particular port (e.g. TCP port 443 when Heartbleed has been found). In the following screenshot you'll find one such case for previously blacklisted attacker(s) (in this case by alienvault.com and two other blacklists) targeting the UDP port 5060 (i.e. SIP) in search for misconfigured VoIP devices:
+
+![image](https://github.com/user-attachments/assets/44ba0c64-aa82-4b0c-b81d-489511a9991f)
+
+### Anonymous attackers
+
+To spot the potential attackers hidden behind the Tor anonymity network, Maltrail utilizes publicly available lists of Tor exit nodes. In the following screenshot you'll see a case where potential attacker has been utilizing the Tor network to access the web target (over HTTP) in our organization's range in suspicious way (total 171 connection requests in 10 minutes):
+
+![image](https://github.com/user-attachments/assets/eb796b92-f0b6-4cc5-8763-fa81d7fa35c3)
+
+### Service attackers
+
+Fairly similar case to the previous one is when previously blacklisted attacker tries to access particular (e.g. non-HTTP(s)) service in our organization's range in rather suspicious way (i.e. total 1513 connection attempts in less than 15 minutes):
+
+![image](https://github.com/user-attachments/assets/d9b25652-d5f7-4c28-962b-197733a81492)
+
+If we enter the `ssh attacker` to the `Filter` field, we'll be able to see all similar occurrences for that day, but in this case for port 22 (i.e. SSH):
+
+![image](https://github.com/user-attachments/assets/c28539df-3a64-4059-955d-4d901634a904)
+
+### Malware
+
+In case of connection attempts coming from infected computers inside our organization toward already known C&C servers, you'll be able to find threats similar to the following (in this case Beebone):
+
+![image](https://github.com/user-attachments/assets/478d850e-4a17-4b0b-84cf-0d69eec37ab3)
+
+In case of DNS requests containing known DGA domain names, threat will be shown like (in this case Necurs):
+
+![image](https://github.com/user-attachments/assets/79d83059-ad78-4423-9a80-26cd20582f7d)
+
+In the following case file downloads from blacklisted (in this case by malwarepatrol.net) URL(s) have occurred:
+
+![image](https://github.com/user-attachments/assets/e5dcf72a-2412-42f3-930d-9db8fb77174b)
+
+If we enter the particular malware name (in this case Ramnit) into the `Filter` field, only threats that are known to be linked to this malware will be filtered in (showing you all affected internal computers):
+
+![image](https://github.com/user-attachments/assets/66830138-8e1b-4104-809f-8f425e67b8eb)
+
+More generally, if we enter the `malware` into the `Filter` field, all threats that have been found by malware(-related) trails (e.g. `IP` addresses) will be filtered in:
+
+![image](https://github.com/user-attachments/assets/05f62a78-480d-433c-a847-a52f6a914514)
+
+### Suspicious domain lookups
+
+Maltrail uses the static list of TLD domains that are known to be commonly involved in suspicious activities. Most such TLD domains are coming from free domain registrars (e.g. Freenom), hence they should be under greater scrutiny. In the following screenshot we can find a case where one such TLD domain .cm has been used by unknown malware using the DGA algorithm to contact its C&C server(s):
+
+![image](https://github.com/user-attachments/assets/071e432a-c4e0-455c-b4f6-5e75e15ece72)
+
+There are also cases when perfectly valid TLD domains (e.g. `.ru`) are used for suspicious activities, such in this case (e.g. `long domain name (suspicious)`) where the domains are obviously DGA generated by unknown malware:
+
+![image](https://github.com/user-attachments/assets/7ecb9635-ac2a-4373-8473-17a33fbc9b96)
+
+Also, `Malicious Traffic Detection System` uses static list of "onion"-related domains that are also often used in suspicious activities (e.g. malware contacting C&C servers by using Tor2Web service(s)):
+
+![image](https://github.com/user-attachments/assets/f91a3776-a921-490e-8f52-cf6023b56a13)
+
+In case of old and/or obsolete malware that sits undetected on organization's infected internal computers, there is often a "phenomenon" where malware continuously tries to contact the long dead C&C server's domain without any DNS resolution. Hence, those kind of (potential) threats will be marked as `excessive no such domain (suspicious)`:
+
+![image](https://github.com/user-attachments/assets/a729897e-b5e0-404e-9f45-4f9eba2a3615)
+
+In case that one trail is responsible for too many threats (e.g. in case of fake source IPs like in DNS amplification attacks), all similar threats will be grouped under a single flood threat (Note: threat's ID will be marked with suffix `F0`), like in the following example:
+
+![image](https://github.com/user-attachments/assets/3c65de7b-4f3b-4cab-aa0e-f4bd5ee6fd4f)
+
+### Suspicious ipinfo requests
+
+Lots of malware uses some kind of `ipinfo` service (e.g. ipinfo.io) to find out the victim's Internet IP address. In case of regular and especially in out-of-office hours, those kind of requests should be closely monitored, like in the following example:
+
+![image](https://github.com/user-attachments/assets/65c7deb0-023d-4d57-a4ee-3af94e548c1c)
+
+### Suspicious direct file downloads
+
+Malicious Traffic Detection System tracks all suspicious direct file download attempts (e.g. `.apk`, `.bin`, `.class`, `.chm`, `.dll`, `.egg`, `.exe`, `.hta`, `.hwp`, `.lnk`, `.ps1`, `.scr`, `.sct`, `.wbk` and `.xpi` file extensions). This can trigger lots of false positives, but eventually could help in reconstruction of the chain of infection (Note: legitimate service providers, like Google, usually use encrypted HTTPS to perform this kind of downloads):
+
+![image](https://github.com/user-attachments/assets/4f0cc99d-2295-403a-87b0-23de224c3308)
+
+### Suspicious HTTP requests
+
+In case of suspicious requests coming from outer web application security scanners (e.g. searching for SQLi, XSS, LFI, etc. vulnerabilities) and/or the internal user malicious attempts toward unknown web sites, threats like the following could be found (real case of attackers trying to exploit Joomla! CMS CVE-2015-7297, CVE-2015-7857, and CVE-2015-7858 vulnerabilities):
+
+![image](https://github.com/user-attachments/assets/e3762c3d-cc1a-4013-8c1c-d865be56915a)
+
+In following example, web application vulnerability scan has been marked as `suspicious`:
+
+![image](https://github.com/user-attachments/assets/63063845-2e46-431c-8de3-17a2ec7256aa)
+
+If we click on the bubble icon (i.e. 💬) for details and copy paste the whole content to a textual file, we'll be able to see all suspicious HTTP requests:
+
+![image](https://github.com/user-attachments/assets/d0599b0d-4209-46ad-80e1-074ee14f3cc8)
+
+In the following screenshot, a run of popular SQLi vulnerability tool sqlmap can be found inside our logs:
+
+![image](https://github.com/user-attachments/assets/f6c18b51-c023-4e55-bcfb-f39f351c22e0)
+
+### Port scanning
+
+In case of too many connection attempts toward considerable amount of different TCP ports, Maltrail will warn about the potential port scanning, as a result of its heuristic mechanism detection. It the following screenshot such warning(s) can be found for a run of popular port scanning tool nmap:
+
+![image](https://github.com/user-attachments/assets/32e63a3e-8c15-486b-982b-949d01fcc1ae)
+
+### DNS resource exhaustion
+
+One popular DDoS attack against the web server(s) infrastructure is the resource exhaustion of its (main) DNS server by making valid DNS recursion queries for (pseudo)random subdomain names (e.g. `abpdrsguvjkyz.www.dedeni.com`):
+
+![image](https://github.com/user-attachments/assets/53bcdd0c-9f8d-4cf3-9765-89a9090ad426)
+
+### Data leakage
+
+Miscellaneous programs (especially mobile-based) present malware(-like) behaviour where they send potentially sensitive data to the remote beacon posts. Maltrail will try to capture such behaviour like in the following example:
+
+![image](https://github.com/user-attachments/assets/9eb31b3a-aae3-47e2-ab6e-b4105844fab3)
+
+### False positives
+
+Like in all other security solutions,  is prone to "false positives". In those kind of cases, `Malicious Traffic Detection System` will (especially in case of `suspicious` threats) record a regular user's behaviour and mark it as malicious and/or suspicious. In the following example it can be seen that a blacklist feed provider `blocklist.de` marked regular Google server as `attacker(s)`, resulting with the following threat:
+
+![image](https://github.com/user-attachments/assets/29dee010-afe5-4cda-bb15-f30cfb160b56)
+
+By hovering mouse over the trail, frame with results from searX search show that this is (most probably) a regular Google's server:
+
+![image](https://github.com/user-attachments/assets/cdff548c-11f4-40f0-8483-1726c1b91fc5)
+
+As another example, access to regular `.work` domains (popular TLD for malicious purposes) resulted with the following threat:
+
+![image](https://github.com/user-attachments/assets/b09ae238-3d65-4c9c-bfd2-11e27db89271)
+
+Nevertheless, administrator(s) should invest some extra time and check (with other means) whether the "suspicious" means malicious or not, as in the following example:
+
+![image](https://github.com/user-attachments/assets/1aee3737-b42d-44a6-9592-a4238f998c2e)
+
+## Best practice(s)
+
+1. Install Malicious Traffic Detection System
+
+**•** On **Ubuntu/Debian**
+```
+sudo apt-get install git python3 python3-dev python3-pip python-is-python3 libpcap-dev build-essential procps schedtool
+sudo pip3 install pcapy-ng
+cd /tmp
+git clone --depth 1 https://github.com/stamparm/maltrail.git
+sudo mv /tmp/maltrail /opt
+sudo chown -R $USER:$USER /opt/maltrail
+```
+**•** On **SUSE/openSUSE**
+```
+sudo zypper install gcc gcc-c++ git libpcap-devel python3-devel python3-pip procps schedtool
+sudo pip3 install pcapy-ng
+cd /tmp
+git clone --depth 1 https://github.com/stamparm/maltrail.git
+sudo mv /tmp/maltrail /opt
+sudo chown -R $USER:$USER /opt/maltrail
+```
+2. Set working environment:
+```
+sudo mkdir -p /var/log/maltrail
+sudo mkdir -p /etc/maltrail
+sudo cp /opt/maltrail/maltrail.conf /etc/maltrail
+sudo nano /etc/maltrail/maltrail.conf
+```
+3. Set running environment:
+
+○ `crontab -e  # autostart server & periodic update`
+```
+*/5 * * * * if [ -n "$(ps -ef | grep -v grep | grep 'server.py')" ]; then : ; else python3 /opt/maltrail/server.py -c /etc/maltrail/maltrail.conf; fi
+0 1 * * * cd /opt/maltrail && git pull
+```
+
+○ `sudo crontab -e  # autostart sensor & periodic restart`
+```
+*/1 * * * * if [ -n "$(ps -ef | grep -v grep | grep 'sensor.py')" ]; then : ; else python3 /opt/maltrail/sensor.py -c /etc/maltrail/maltrail.conf; fi
+2 1 * * * /usr/bin/pkill -f maltrail
+```
+
+4. Enable as systemd services (Linux only):
+```
+sudo cp /opt/maltrail/maltrail-sensor.service /etc/systemd/system/maltrail-sensor.service
+sudo cp /opt/maltrail/maltrail-server.service /etc/systemd/system/maltrail-server.service
+sudo systemctl daemon-reload
+sudo systemctl start maltrail-server.service
+sudo systemctl start maltrail-sensor.service
+sudo systemctl enable maltrail-server.service
+sudo systemctl enable maltrail-sensor.service
+systemctl status maltrail-server.service && systemctl status maltrail-sensor.service
+```
+
+>[!Note]
+> /maltrail-sensor.service can be started as dedicated service without pre-started /maltrail-server.service. This is useful for case, when /maltrail-server.service is installed and works on another machine in you network environment.
+
+### License
+
+This software is provided under a MIT License. See the accompanying LICENSE file for more information.
+
+### Developers
+
+**•** Hanan Asif (@thehananasif)
+
+## Presentations
+**•** 47th TF-CSIRT Meeting, Prague (Czech Republic), 2016 (slides)
