@@ -231,3 +231,14 @@ The way to build ipset blacklist is the same (see above) excepted that URLs will
 
 Same as for **Sensor**, when running the **Server** (e.g. `python server.py`) for the first time and/or after a longer period of non-running, if option `USE_SERVER_UPDATE_TRAILS` is set to `true`, it will automatically update the trails from trail definitions (Note: stored inside the `trails` directory). Its basic function is to store the log entries inside the logging directory (i.e. option `LOG_DIR` inside the `HananAsif.conf` file's section `[All]`) and provide the web reporting interface for presenting those same entries to the end-user (Note: there is no need install the 3rd party web server packages like Apache):
 
+![68747470733a2f2f692e696d6775722e636f6d2f474864475077372e706e67](https://github.com/user-attachments/assets/3b45333c-d9f8-4970-8926-2e872a90e4ea)
+
+## User's guide
+
+### Reporting interface
+
+When entering the `Server's` reporting interface (i.e. via the address defined by options `HTTP_ADDRESS` and `HTTP_PORT`), user will be presented with the following authentication dialog. User has to enter the proper credentials that have been set by the server's administrator inside the configuration file `HananAsif.conf` (Note: default credentials are `admin:changeme!`):
+
+![68747470733a2f2f692e696d6775722e636f6d2f575670415341492e706e67](https://github.com/user-attachments/assets/2047a4a0-8006-401a-a1a8-242c6224ef7a)
+
+Once inside, user will be presented with the following reporting interface:
