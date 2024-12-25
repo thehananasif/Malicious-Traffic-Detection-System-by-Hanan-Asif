@@ -242,3 +242,24 @@ When entering the `Server's` reporting interface (i.e. via the address defined b
 ![68747470733a2f2f692e696d6775722e636f6d2f575670415341492e706e67](https://github.com/user-attachments/assets/2047a4a0-8006-401a-a1a8-242c6224ef7a)
 
 Once inside, user will be presented with the following reporting interface:
+
+![68747470733a2f2f692e696d6775722e636f6d2f505a59384a45432e706e67](https://github.com/user-attachments/assets/840f1061-3ec4-4fab-b51b-9cfe767cc29e)
+
+The top part holds a sliding timeline (Note: activated after clicking the current date label and/or the calendar icon 📆) where user can select logs for past events (Note: mouse over event will trigger display of tooltip with approximate number of events for current date). Dates are grouped by months, where 4 month period of data are displayed inside the widget itself. However, by using the provided slider (i.e. ← →) user can easily access events from previous months.
+
+![68747470733a2f2f692e696d6775722e636f6d2f526e49524f636e2e706e67](https://github.com/user-attachments/assets/17288ec7-7639-4907-900e-79b79503a3a6)
+
+Once clicking the date, all events for that particular date should be loaded and represented by the client's web browser. Depending on number of events and the network connection speed, loading and display of logged events could take from couple of seconds, up to several minutes (e.g. 100,000 events takes around 5 seconds in total). For the whole processing time, animated loader will be displayed across the disabled user interface:
+
+![68747470733a2f2f692e696d6775722e636f6d2f6f583752746a6f2e706e67](https://github.com/user-attachments/assets/0d062542-09e9-4bc1-9c11-373c2a01df0e)
+
+Middle part holds a summary of displayed `events`. Events box represents total number of events in a selected 24-hour period, where red line represents IP-based events, blue line represents DNS-based events and yellow line represents URL-based events. `Sources` box represents number of events per top sources in form of a stacked column chart, with total number of sources on top. `Threats` box represents percentage of top threats in form of a pie chart (Note: gray area holds all threats having each <1% in total events), with total number of threats on top. `Trails` box represents percentage of top trails in form of a pie chart (Note: gray area holds all trails having each <1% in total events), with total number of trails on top. Each of those boxes are active, hence the click on one of those will result with a more detailed graph.
+
+![68747470733a2f2f692e696d6775722e636f6d2f354e46627143622e706e67](https://github.com/user-attachments/assets/3a2e7d5a-07c1-4de0-ac7c-51f55d3b2e9b)
+
+Bottom part holds a condensed representation of logged events in form of a paginated table. Each entry holds details for a single threat (Note: uniquely identified by a pair `(src_ip, trail)` or `(dst_ip, trail)` if the `src_ip` is the same as the `trail` as in case of attacks coming from the outside):
+
+![68747470733a2f2f692e696d6775722e636f6d2f497850774b4b5a2e706e67](https://github.com/user-attachments/assets/6476b1d6-99ee-4119-bd03-f81b40e660b4)
+
+
+
