@@ -507,9 +507,9 @@ systemctl status maltrail-server.service && systemctl status maltrail-sensor.ser
 
 This software is provided under a MIT License. See the accompanying LICENSE file for more information.
 
-### Developers
+### Developer
 
 **•** Hanan Asif (@thehananasif)
 
-## Presentations
+### Presentations
 **•** 47th TF-CSIRT Meeting, Prague (Czech Republic), 2016 (slides)
