@@ -1,8 +1,8 @@
-# Copyright (c) 2014-2024 Maltrail developers (https://github.com/stamparm/maltrail/)
+# Copyright (c) 2014-2024 thehananasif developers (https://github.com/thehananasif/Malicious-Traffic-Detection-System-by-Hanan-Asif)
 # See the file 'LICENSE' for copying permission
 
 #################################################################
-#                 Maltrail Changelog File                       #
+#                 MTDS Changelog File                       #
 #################################################################
 
 [+] Added functionality
@@ -48,7 +48,7 @@
 
 - Version 0.70 -> 0.71 (01 Jul 2024)
 
-[=] Maltrail docker container run is improved (Issue #19260)
+[=] MTDS docker container run is improved (Issue #19260)
 [=] php-inj detection is improved (Issue #19262)
 [=] Python 3.12 compability is improved (Issue #19257)
 [=] Multiple updates and optimizations for regular static trails and the whitelist
@@ -98,7 +98,7 @@
 
 - Version 0.64 -> 0.65 (01 Jan 2024)
 
-[+] Customisable blacklists via BLACKLIST option in /maltrail.conf file (Issue #19230)
+[+] Customisable blacklists via BLACKLIST option in /HananAsif.conf file (Issue #19230)
 [=] Multiple updates and optimizations for regular static trails and the whitelist
 
 
@@ -215,7 +215,7 @@
 - Version 0.49 -> 0.50 (01 Oct 2022)
 
 [=] "potential remote code execution" heur for CVE-2022-30190 detection is updated
-[=] "Maltrail detection nuances" wiki-page is updated
+[=] "MTDS detection nuances" wiki-page is updated
 [=] "Trail classes" wiki-page is updated
 [=] Multiple updates and optimizations for regular static trails and the whitelist
 
@@ -252,7 +252,7 @@
 
 - Version 0.44 -> 0.45 (01 May 2022)
 
-[+] systemd-based realization for Maltrail sensor.py, server.py and ipset/iptables ban-list (dedicated repo) have added
+[+] systemd-based realization for MTDS sensor.py, server.py and ipset/iptables ban-list (dedicated repo) have added
 [+] New Wiki pages are added
 [=] "potential remote code execution" heuristic is improved (detection for Java-related RCE stuff)
 [=] Multiple updates and optimizations for regular static trails and the whitelist
@@ -340,7 +340,7 @@
 
 - Version 0.31 -> 0.32 (10 May 2021)
 
-[!] Fixed PR_END_OF_FILE_ERROR bug, when using HTTPS for Maltrail's server (Issue #16217)
+[!] Fixed PR_END_OF_FILE_ERROR bug, when using HTTPS for MTDS's server (Issue #16217)
 [!] Fixed bug with TLSv1_2_METHOD (Issue #16250)
 [+] Added displaying real IP behind Cloudflare's one (Issue #20)
 [=] Multiple updates and optimizations for regular static trails and the whitelist
@@ -362,14 +362,14 @@
 - Version 0.28 -> 0.29 (01 Feb 2021)
 
 [+] Two new UI features (hide threat and report false positive options)
-[+] Auto-refresh for Maltrail web-page (/?refresh=N, where N in seconds. Issue #624)
-[+] Maltrail demo pages are released: maltraildemo.github.io
+[+] Auto-refresh for MTDS web-page (/?refresh=N, where N in seconds. Issue #624)
+[+] MTDS demo pages are released: MTDSdemo.github.io
 [=] Multiple updates and optimizations for regular static trails and the whitelist
 [=] Potential DNS changer heur is improved
 [+] Implemented colorized console output
 [=] Minor style revamp and improved look and feel on mobile phones
 [-] Memory check is removed
-[+] Added info for proper Maltrail citation (/CITATION.cff)
+[+] Added info for proper MTDS citation (/CITATION.cff)
 [=] Added starting and ending times to console output
 
 
